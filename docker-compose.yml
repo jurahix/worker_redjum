@@ -1,0 +1,24 @@
+version: '3.8'
+services:
+  worker_redjum:
+    build:
+      context: .
+      dockerfile: worker_redjum.Dockerfile
+    container_name: worker_redjum
+    restart: always
+    env_file:
+      - src/.env
+    environment:
+      - NATS_URL=${NATS_URL}
+      - NATS_USER=${NATS_USER}
+      - NATS_PASSWORD=${NATS_PASSWORD}
+      - ADMIN_API_URL=${ADMIN_API_URL}
+      - WORKER_API_KEY=${WORKER_API_KEY}
+      - WORKER_TOKEN=${WORKER_TOKEN}
+      - VPS_ID=${VPS_ID}
+    volumes:
+      - ./src:/app/src
+      - ./shared:/app/shared
+    extra_hosts:
+      # se fuerza la ip de tailscale para garantizar la conectividad dentro de Docker
+      - "srv2030232.net.synint.pe:100.64.0.1"

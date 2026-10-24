@@ -1,0 +1,15 @@
+# Exclude virtual environment and cache
+.venv/
+src/.venv/
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Exclude git metadata
+.git/
+.gitignore
+
+# Environment files
+src/.env
+.env

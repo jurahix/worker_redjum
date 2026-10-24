@@ -1,0 +1,11 @@
+{
+  "task_subject": "scraper.task.redjum",
+  "result_subject": "scraper.result.redjum",
+  "queue_group": "scrapers",
+  "redjum_url": "https://redjum.pj.gob.pe/redjum",
+  "max_concurrent_requests": 5,
+  "worker_technology": "python",
+  "proxy_flush_interval_seconds": 60,
+  "proxy_flush_batch_size": 10,
+  "heartbeat_interval_seconds": 120
+}

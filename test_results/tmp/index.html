@@ -1,0 +1,125 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" ng-app="mainApp">
+
+<head >
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="icon" href="/redjum/resources/images/favicon.ico">
+    
+    <title>Servicio de Consulta de Registro de Deudores Judiciales Morosos</title>
+	
+	<!-- AGREGANDO ESTILOS -->
+	<link href="/redjum/resources/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/redjum/resources/css/style.css" rel="stylesheet">
+	<link href="/redjum/resources/css/datepicker.min.css" rel="stylesheet">
+	
+	<link href="/redjum/resources/css/angular-csp.css" rel="stylesheet">
+	<link href="/redjum/resources/css/angular-ui-notification.min.css" rel="stylesheet">
+	
+</head>
+
+<body>
+
+	<!-- CABECERA -->
+	
+<div class="container clearfix">
+	<div class="row">
+		<div class="col-md-5 left_side">
+			<a href="#/"><img src="/redjum/resources/images/logo-pj.png" class="img-responsive" alt="logo"></a>			
+		</div>
+		<div class="col-md-4 right_side">
+			<a href="#/"><img src="/redjum/resources/images/logo-redjum.png" class="img-responsive" alt="logo"></a>
+			<div class="version">
+            	<div id="lblVersion" style="text-align: right"> Versi&oacute;n 1.0.0</div>
+            </div>
+		</div>
+	</div>
+</div>
+	
+	<!-- MENU -->
+	<nav class="navbar navbar-red navbar-static-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <div id="navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#/">INICIO</a></li>
+        <li><a href="#/video-tutoriales">VIDEOTUTORIALES</a></li>
+        <li><a href="#/ayuda">AYUDA</a></li>        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div>
+</nav>
+
+	<div class="container">
+		
+		<div ng-view>
+			<!-- AQUI SE CARGARAN LAS PAGINAS -->
+		</div>
+				
+	</div>
+	
+	<!-- PIE DE PAGINA -->	
+	<footer>		
+		
+<div back-img = "/redjum/resources/images/footer.jpg">
+	<section class="container">
+		<div class="col-sm-12" style="text-align: center; margin-top: 35px; margin-bottom: 20px; color: #FFF; font-size: 13px;">
+			Av. Paseo de la República S/N Palacio de Justicia, Cercado, Lima - Perú<br />Copyright © - 2015 Todos los derechos reservados<br />Recomendado para Chrome, Mozilla Firefox, IExplorer 9 o versiones superiores<br />
+		</div>
+	</section>
+</div>
+	</footer>
+		
+	<!-- ESTE ORDEN DEBE DE RESPETARSE -->
+	<!-- verifique internet explore version 8 -->
+	<script	src="/redjum/resources/js/jquery/jquery.min.js"></script>
+	<script	src="/redjum/resources/js/bootstrap/bootstrap.min.js"></script>
+
+	<script src="/redjum/resources/js/angularjs/angular.min.js"></script>
+	<script	src="/redjum/resources/js/angularjs/angular-route.min.js"></script>
+	<script	src="/redjum/resources/js/angularjs/angular-resource.min.js"></script>
+	<script	src="/redjum/resources/js/angularjs/angular-animate.js"></script>
+	<script	src="/redjum/resources/js/angularjs/angular-locale_es-pe.js"></script>
+	<script	src="/redjum/resources/js/angularjs/ui-bootstrap-tpls.min.js"></script>
+	<script	src="/redjum/resources/js/angularjs/ng-table.min.js"></script>
+		
+	<!-- PARA EL MANEJO DE FECHAS -->
+	<script src="/redjum/resources/js/angularjs/moment.min.js"></script>
+	<script src="/redjum/resources/js/angularjs/bootstrap-datepicker.min.js"></script>
+	<script src="/redjum/resources/js/angularjs/bootstrap-datetimepicker.min.js"></script>
+				
+	<!-- TOKEN -->
+	<script src="/redjum/resources/js/angularjs/satellizer.js"></script>
+
+	<!-- NOTIFICACIONES -->
+	<script src="/redjum/resources/js/angularjs/angular-ui-notification.min.js"></script>
+
+	<script src="/redjum/resources/js/ConsultaMain.js"></script>
+	<script src="/redjum/resources/js/ConsultaController.js"></script>
+	<script src="/redjum/resources/js/ConsultaFactory.js"></script>
+	
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	
+	  ga('create', 'UA-47013024-8', 'auto');
+	  ga('send', 'pageview');
+	  
+	</script>
+
+</body>
+
+</html>

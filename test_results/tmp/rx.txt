@@ -1,0 +1,1 @@
+[{"descrimaestra":"DNI","campo":"01  "},{"descrimaestra":"RUC","campo":"02  "},{"descrimaestra":"PASAPORTE","campo":"03  "},{"descrimaestra":"CARNET DE EXTRANJERIA","campo":"04  "}]

@@ -1,0 +1,99 @@
+{
+  "success": true,
+  "resultState": "REGISTRA",
+  "resultMessage": "Registra deudas judiciales morosas",
+  "data": {
+    "success": true,
+    "numeroDocumento": "20563775654",
+    "infoBasico": {
+      "data": [
+        {
+          "apePaterno": null,
+          "apeMaterno": null,
+          "fecRegistro": 1791925923463,
+          "tp": false,
+          "nroPartidaElect": "13293285",
+          "nroDocumento": "20563775654",
+          "tipoDocumento": "RUC",
+          "nombres": "BOX LOGISTICS S.A.C.",
+          "id": "0000009216",
+          "razonSocial": "BOX LOGISTICS S.A.C.",
+          "nombre": null
+        }
+      ],
+      "error": null
+    },
+    "deudor": {
+      "id": "0000009216",
+      "tipoDocumento": "RUC",
+      "nroDocumento": "20563775654",
+      "nombres": "BOX LOGISTICS S.A.C.",
+      "nombre": null,
+      "apePaterno": null,
+      "apeMaterno": null,
+      "razonSocial": "BOX LOGISTICS S.A.C.",
+      "nroPartidaElect": "13293285",
+      "fecRegistro": "2026-10-13 16:12:03"
+    },
+    "infCompleta": {
+      "data": [
+        {
+          "deudasBean": [
+            {
+              "cDeudor": "0000009216",
+              "nProceso": "2026000652",
+              "xMoneda": "SOLES",
+              "nMonto": 14995.82
+            }
+          ],
+          "cDeudor": "0000009216",
+          "nProceso": "2026000652",
+          "xEspecialidad": "COMERCIAL",
+          "cDistritoJudicial": "18",
+          "cMateria": "207",
+          "cEspecialidad": "CO ",
+          "fResolucionMandato": 1760480758283,
+          "cOrgJurisd": "G01",
+          "nAnoExpediente": 2023,
+          "xDistritoJudicial": "LIMA",
+          "nExpediente": "22447",
+          "xJuzgado": "1°JUZGADO CIVIL-COMERCIAL",
+          "nNroOficio": "0         ",
+          "nNrojuzgado": 99,
+          "xObservacion": "SIJ",
+          "xSecretario": "ANA DOLORIER CONDORI",
+          "nResolucionMandato": "ONCE",
+          "xMateria": "EJECUCION DE LAUDOS ARBITRALES",
+          "aFavorDe": " JUAN FELIX CUBA CASTILLO"
+        }
+      ],
+      "error": null
+    },
+    "deudas": [
+      {
+        "nProceso": "2026000652",
+        "nExpediente": "22447",
+        "nAnoExpediente": 2023,
+        "xDistritoJudicial": "LIMA",
+        "xEspecialidad": "COMERCIAL",
+        "xJuzgado": "1°JUZGADO CIVIL-COMERCIAL",
+        "xMateria": "EJECUCION DE LAUDOS ARBITRALES",
+        "aFavorDe": "JUAN FELIX CUBA CASTILLO",
+        "xSecretario": "ANA DOLORIER CONDORI",
+        "nResolucionMandato": "ONCE",
+        "fResolucionMandato": "2025-10-14 17:25:58",
+        "montos": [
+          {
+            "monto": 14995.82,
+            "moneda": "SOLES"
+          }
+        ]
+      }
+    ],
+    "foto": null,
+    "mensaje": "Registra deudas judiciales morosas",
+    "resultState": "REGISTRA",
+    "resultMessage": "Registra deudas judiciales morosas"
+  },
+  "errorMessage": null
+}

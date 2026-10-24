@@ -1,0 +1,3 @@
+[submodule "shared"]
+	path = shared
+	url = https://github.com/jurahix/python-workers-shared.git
