@@ -50,7 +50,7 @@ class RedjumScraper:
       2. GET  /redjum/Captcha.jpg?hash_id=<rnd> -> imagen captcha (PNG)
       3. GET  /redjum/deudoresPorDocumento/?hash_id=<mismo>&captcha=<txt>&tipoDocumento=<campo>&numerodocumento=<num>
       4. GET  /redjum/deudasPorDeudor/?hash_id=<rnd>&id=<idDeudor>   (detalle)
-      5. GET  /redjum/fotoDeudorByte/?hash_id=<rnd>&id=<idDeudor>    (foto en base64)
+      5. (fotoDeudorByte deshabilitado: ya no se consultan fotos)
 
     La capa HTTP de curl_cffi es sincrona; el metodo publico `scrape` la
     ejecuta en un hilo aparte para no bloquear el event loop del worker.
@@ -214,7 +214,7 @@ class RedjumScraper:
         Consulta deudores registrados en un rango de fechas.
 
         fecha_inicio / fecha_fin: datetime o str 'dd/mm/yyyy'. Por defecto los ultimos 30 dias.
-        incluir_detalle: si True, descarga deudas y foto de cada deudor.
+        incluir_detalle: si True, descarga las deudas de cada deudor.
         max_detalles: limita cuantos deudores detallar (None = todos).
         """
         fecha_fin = fecha_fin or datetime.now()
@@ -337,16 +337,14 @@ class RedjumScraper:
             id_deudor = data_array[0].get("id")
             logger.info(f"ID Deudor encontrado: {id_deudor}")
 
-            info_completa_json, foto_json = "", ""
+            info_completa_json = ""
             if incluir_detalle:
                 detalle = self.obtener_detalle(session, id_deudor)
                 info_completa_json = json.dumps(detalle["deudas"], ensure_ascii=False)
-                foto_json = json.dumps(detalle["foto"], ensure_ascii=False)
 
             return {
                 "InfoBasico": info_basico_json,
                 "InfCompleta": info_completa_json,
-                "Foto": foto_json,
                 "Mensaje": "Registra deudas judiciales morosas",
                 "ResultState": "REGISTRA",
             }
@@ -358,7 +356,7 @@ class RedjumScraper:
     # DETALLE DEL DEUDOR
     # ------------------------------------------------------------------
     def obtener_detalle(self, session: requests.Session, id_deudor: str) -> dict:
-        """Descarga las deudas y la foto de un deudor dentro de una sesion ya validada."""
+        """Descarga las deudas de un deudor dentro de una sesion ya validada (sin foto)."""
         deudas_resp = session.get(
             f"{self.base_url}/deudasPorDeudor/",
             params={"hash_id": str(random.random()), "id": id_deudor},
@@ -367,20 +365,10 @@ class RedjumScraper:
         deudas_resp.raise_for_status()
         deudas_payload = deudas_resp.json()
 
-        foto_resp = session.get(
-            f"{self.base_url}/fotoDeudorByte/",
-            params={"hash_id": str(random.random()), "id": id_deudor},
-            timeout=60,
-        )
-        foto_resp.raise_for_status()
-        foto_payload = foto_resp.json()
-
         return {
             "id": id_deudor,
             "deudas": deudas_payload,
             "deudas_normalizadas": self.parser.parse_deudas(deudas_payload.get("data")),
-            "foto": foto_payload,
-            "foto_base64": self.parser.parse_foto(foto_payload.get("data")),
         }
 
     def tipos_documentos(self, proxy: str = None) -> list:

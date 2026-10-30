@@ -8,6 +8,7 @@ import nats
 from config.settings import Settings
 from scraping.redjum_scraper import RedjumScraper
 from parsing.redjum_parser import RedjumParser
+from parsing.redjum_summary import RedjumSummaryMapper
 from messaging.event_publisher import EventPublisher
 
 import sys
@@ -29,6 +30,7 @@ class NatsWorker:
         self._settings = settings
         self._scraper = scraper
         self._parser = parser
+        self._summary = RedjumSummaryMapper()
 
         from dotenv import load_dotenv
         load_dotenv()
@@ -174,18 +176,19 @@ class NatsWorker:
                 from shared.result_states import resolve_entity_result
                 result_state, result_message = resolve_entity_result(self.ENTITY, parsed_data, parameters)
 
-                if isinstance(parsed_data, dict):
-                    if result_state in ("NO TIENE DATOS", "NO REGISTRA", "SIN RUC"):
-                        parsed_data["mensaje"] = result_message
-                        parsed_data["message"] = result_message
-                    parsed_data["resultState"] = result_state
-                    parsed_data["resultMessage"] = result_message
+                # Minimización de datos: solo el resumen permitido sale en "data"
+                summary = self._summary.build_summary(parsed_data, parameters)
+                if result_state in ("NO TIENE DATOS", "SIN RUC", "NO REGISTRA"):
+                    summary["mensaje"] = result_message
+                    summary["message"] = result_message
+                summary["resultState"] = result_state
+                summary["resultMessage"] = result_message
 
                 data_string = json.dumps({
-                    "success": parsed_data.get("success", True) if isinstance(parsed_data, dict) else True,
+                    "success": True,
                     "resultState": result_state,
                     "resultMessage": result_message,
-                    "data": parsed_data,
+                    "data": summary,
                     "errorMessage": None
                 }, ensure_ascii=False)
 
