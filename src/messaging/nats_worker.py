@@ -5,6 +5,7 @@ import time
 import asyncio
 from datetime import datetime
 import nats
+from shared.subjects import build_node_task_subject
 from config.settings import Settings
 from scraping.redjum_scraper import RedjumScraper
 from parsing.redjum_parser import RedjumParser
@@ -106,6 +107,12 @@ class NatsWorker:
                 asyncio.create_task(self._process_message(nc, msg, semaphore))
 
             await nc.subscribe(self._settings.task_subject, queue=self._settings.queue_group, cb=message_handler)
+
+            # Suscripción dirigida por máquina (pruebas individuales):
+            # {task_subject}.{VPS_ID} p. ej. scraper.task.essalud.debi02
+            node_task_subject = build_node_task_subject(self._settings.task_subject, self.VPS_ID)
+            await nc.subscribe(node_task_subject, queue=self._settings.queue_group, cb=message_handler)
+            logger.info(f"Suscrito a {node_task_subject} (Queue: {self._settings.queue_group})")
             logger.info(f"Suscrito a {self._settings.task_subject} (Queue: {self._settings.queue_group})")
 
         except Exception as e:
