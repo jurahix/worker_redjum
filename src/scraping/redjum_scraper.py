@@ -60,7 +60,8 @@ class RedjumScraper:
         self.settings = settings
         self.base_url = getattr(settings, "redjum_url", "https://redjum.pj.gob.pe/redjum").rstrip("/")
         self.solver = solver or RedjumCaptchaSolver(
-            api_key=getattr(settings, "deepseek_api_key", None)
+            api_key=getattr(settings, "deepseek_api_key", None),
+            solver_type=getattr(settings, "captcha_solver_type", None)
         )
         self.parser = RedjumParser()
         self._tipos_documentos_cache: Optional[list] = None

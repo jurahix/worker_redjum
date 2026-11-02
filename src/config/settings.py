@@ -14,6 +14,7 @@ class Settings:
         self.vps_id = os.environ.get("VPS_ID") or data.get("vps_id", "local-vps")
         self.worker_technology = data.get("worker_technology", "python")
         self.deepseek_api_key = os.environ.get("DEEPSEEK_API_KEY") or data.get("deepseek_api_key")
+        self.captcha_solver_type = os.environ.get("CAPTCHA_SOLVER_TYPE") or data.get("captcha_solver_type")
 
         self.admin_api_url = os.environ.get("ADMIN_API_URL")
         self.worker_api_key = os.environ.get("WORKER_API_KEY")
